@@ -1,0 +1,20 @@
+UPDATE:
+When we presented we had an issue with row level locking and incorrect flight bookings. IE more completed transactions than possible. We have fixed row level locking by implementing select... for update method and in doing so resolved our reservation issue. Feel free to check totals of completed versus invalid.
+
+Run program with:
+
+python oltp_airline.py nthreads=X secs=Y
+X = number of threads
+Y = number of seconds X threads get generated
+
+
+
+The first lock is to check if the flight is full  or not. 
+	If the flight is full, the next lock is to update the reservation table saying the reservation is invalid.
+	If the flight is not full the next lock checks if the requested seat is taken or not.
+		If the seat is taken the next lock is to update the reservationtable saying the reservation is invalid.
+		If the seat is open the next lock is to update the flight table, the reservation table, and number of seats booked in that flight. The lock is then unlocked so other transactions can occur and a final lock is placed on the customer table where the ticket totals are updated accordingly.
+
+
+
+
