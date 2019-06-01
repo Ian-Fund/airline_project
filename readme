@@ -1,5 +1,5 @@
-UPDATE:
-When we presented we had an issue with row level locking and incorrect flight bookings. IE more completed transactions than possible. We have fixed row level locking by implementing select... for update method and in doing so resolved our reservation issue. Feel free to check totals of completed versus invalid.
+Project from Database Systems Course. Simulated an airline  with random flights being booked. Handles concurrent transactions with row level locking. 
+
 
 Run program with:
 
